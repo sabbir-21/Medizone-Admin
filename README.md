@@ -2,7 +2,7 @@
     <img src="app/src/main/res/drawable-xhdpi/logow_1.png" />
 </p>
 # Medizone Admin
-![GitHub repo size](https://img.shields.io/github/repo-size/sabbir-21/Medizone-Admin?color=yellow) ![GitHub last commit](https://img.shields.io/github/last-commit/sabbir-21/Medizone-Admin)
+[![GitHub repo size](https://img.shields.io/github/repo-size/sabbir-21/Medizone-Admin?color=yellow)] [![GitHub last commit](https://img.shields.io/github/last-commit/sabbir-21/Medizone-Admin)]
  A handy application for medizone content manager
  © 2020 Sabbir Ahmed
 This project is created to controll the version of Medizone Admin Application.
