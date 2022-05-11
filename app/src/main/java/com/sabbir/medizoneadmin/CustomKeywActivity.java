@@ -25,65 +25,50 @@ import java.util.regex.*;
 import java.text.*;
 import org.json.*;
 import android.widget.LinearLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.content.Intent;
-import android.net.Uri;
-import java.util.Timer;
-import java.util.TimerTask;
-import android.graphics.Typeface;
+import android.webkit.WebView;
+import android.webkit.WebSettings;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class CustomKeywActivity extends AppCompatActivity {
 	
-	private Timer _timer = new Timer();
-	
-	private LinearLayout linear2;
-	private ImageView imageview2;
-	private TextView textview1;
-	private TextView textview3;
-	private TextView textview2;
-	
-	private Intent i = new Intent();
-	private TimerTask t;
+	private LinearLayout linear1;
+	private WebView webview1;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.custom_keyw);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
-		linear2 = findViewById(R.id.linear2);
-		imageview2 = findViewById(R.id.imageview2);
-		textview1 = findViewById(R.id.textview1);
-		textview3 = findViewById(R.id.textview3);
-		textview2 = findViewById(R.id.textview2);
+		linear1 = findViewById(R.id.linear1);
+		webview1 = findViewById(R.id.webview1);
+		webview1.getSettings().setJavaScriptEnabled(true);
+		webview1.getSettings().setSupportZoom(true);
+		
+		webview1.setWebViewClient(new WebViewClient() {
+			@Override
+			public void onPageStarted(WebView _param1, String _param2, Bitmap _param3) {
+				final String _url = _param2;
+				
+				super.onPageStarted(_param1, _param2, _param3);
+			}
+			
+			@Override
+			public void onPageFinished(WebView _param1, String _param2) {
+				final String _url = _param2;
+				
+				super.onPageFinished(_param1, _param2);
+			}
+		});
 	}
 	
 	private void initializeLogic() {
-		textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/stroke_dimension.ttf"), 0);
-		textview2.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/stroke_dimension.ttf"), 0);
-		textview3.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/stroke_dimension.ttf"), 0);
-		t = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						i.setClass(getApplicationContext(), HomeActivity.class);
-						startActivity(i);
-						t.cancel();
-						finish();
-					}
-				});
-			}
-		};
-		_timer.schedule(t, (int)(2000));
+		webview1.loadUrl("https://keywordtool.io");
 	}
 	
 	

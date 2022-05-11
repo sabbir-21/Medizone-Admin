@@ -25,65 +25,48 @@ import java.util.regex.*;
 import java.text.*;
 import org.json.*;
 import android.widget.LinearLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
 import android.content.Intent;
 import android.net.Uri;
-import java.util.Timer;
-import java.util.TimerTask;
-import android.graphics.Typeface;
+import android.view.View;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.DialogFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class SocialErrorActivity extends AppCompatActivity {
 	
-	private Timer _timer = new Timer();
-	
-	private LinearLayout linear2;
-	private ImageView imageview2;
+	private LinearLayout linear1;
 	private TextView textview1;
-	private TextView textview3;
-	private TextView textview2;
+	private Button button1;
 	
-	private Intent i = new Intent();
-	private TimerTask t;
+	private Intent ifb = new Intent();
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
 		super.onCreate(_savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.social_error);
 		initialize(_savedInstanceState);
 		initializeLogic();
 	}
 	
 	private void initialize(Bundle _savedInstanceState) {
-		linear2 = findViewById(R.id.linear2);
-		imageview2 = findViewById(R.id.imageview2);
+		linear1 = findViewById(R.id.linear1);
 		textview1 = findViewById(R.id.textview1);
-		textview3 = findViewById(R.id.textview3);
-		textview2 = findViewById(R.id.textview2);
+		button1 = findViewById(R.id.button1);
+		
+		button1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				ifb.setAction(Intent.ACTION_VIEW);
+				ifb.setData(Uri.parse("https://developers.facebook.com/tools/debug/"));
+				ifb.setPackage("com.android.chrome");
+				startActivity(ifb);
+			}
+		});
 	}
 	
 	private void initializeLogic() {
-		textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/stroke_dimension.ttf"), 0);
-		textview2.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/stroke_dimension.ttf"), 0);
-		textview3.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/stroke_dimension.ttf"), 0);
-		t = new TimerTask() {
-			@Override
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						i.setClass(getApplicationContext(), HomeActivity.class);
-						startActivity(i);
-						t.cancel();
-						finish();
-					}
-				});
-			}
-		};
-		_timer.schedule(t, (int)(2000));
 	}
 	
 	
