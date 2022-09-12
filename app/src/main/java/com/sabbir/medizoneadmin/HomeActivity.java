@@ -1,56 +1,56 @@
 package com.sabbir.medizoneadmin;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.*;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import android.widget.LinearLayout;
+import android.Manifest;
+import android.animation.*;
 import android.app.*;
-import android.os.*;
-import android.view.*;
-import android.view.View.*;
-import android.widget.*;
+import android.app.AlertDialog;
 import android.content.*;
+import android.content.ClipData;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
 import android.media.*;
 import android.net.*;
+import android.net.Uri;
+import android.os.*;
 import android.text.*;
 import android.text.style.*;
 import android.util.*;
-import android.webkit.*;
-import android.animation.*;
-import android.view.animation.*;
-import java.io.*;
-import java.util.*;
-import java.util.regex.*;
-import java.text.*;
-import org.json.*;
-import android.webkit.WebView;
-import android.webkit.WebSettings;
-import android.widget.ImageView;
-import android.widget.Button;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import java.util.Timer;
-import java.util.TimerTask;
-import android.content.Intent;
-import android.content.ClipData;
-import android.net.Uri;
-import android.webkit.WebViewClient;
+import android.view.*;
 import android.view.View;
+import android.view.View.*;
+import android.view.animation.*;
+import android.webkit.*;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.*;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import androidx.annotation.*;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.DialogFragment;
-import androidx.core.content.ContextCompat;
-import androidx.core.app.ActivityCompat;
-import android.Manifest;
-import android.content.pm.PackageManager;
+import com.google.android.material.appbar.AppBarLayout;
+import java.io.*;
+import java.text.*;
+import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.regex.*;
+import org.json.*;
 
 public class HomeActivity extends AppCompatActivity {
 	
@@ -71,10 +71,10 @@ public class HomeActivity extends AppCompatActivity {
 	private ImageView imageview1;
 	private LinearLayout _drawer_linear1;
 	private ImageView _drawer_imageview1;
-	private Button _drawer_button1;
-	private Button _drawer_button2;
-	private Button _drawer_button3;
-	private Button _drawer_button4;
+	private Button _drawer_mzadmin;
+	private Button _drawer_mzhome;
+	private Button _drawer_keyword;
+	private Button _drawer_mzimage;
 	
 	private AlertDialog.Builder d;
 	private RequestNetwork r;
@@ -134,10 +134,10 @@ public class HomeActivity extends AppCompatActivity {
 		imageview1 = findViewById(R.id.imageview1);
 		_drawer_linear1 = _nav_view.findViewById(R.id.linear1);
 		_drawer_imageview1 = _nav_view.findViewById(R.id.imageview1);
-		_drawer_button1 = _nav_view.findViewById(R.id.button1);
-		_drawer_button2 = _nav_view.findViewById(R.id.button2);
-		_drawer_button3 = _nav_view.findViewById(R.id.button3);
-		_drawer_button4 = _nav_view.findViewById(R.id.button4);
+		_drawer_mzadmin = _nav_view.findViewById(R.id.mzadmin);
+		_drawer_mzhome = _nav_view.findViewById(R.id.mzhome);
+		_drawer_keyword = _nav_view.findViewById(R.id.keyword);
+		_drawer_mzimage = _nav_view.findViewById(R.id.mzimage);
 		d = new AlertDialog.Builder(this);
 		r = new RequestNetwork(this);
 		fp.setType("image/*");
@@ -201,33 +201,36 @@ public class HomeActivity extends AppCompatActivity {
 			}
 		};
 		
-		_drawer_button1.setOnClickListener(new View.OnClickListener() {
+		_drawer_mzadmin.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				webview1.loadUrl("https://medizone.com.bd/wp-admin/");
 			}
 		});
 		
-		_drawer_button2.setOnClickListener(new View.OnClickListener() {
+		_drawer_mzhome.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				i.setClass(getApplicationContext(), CustomKeywActivity.class);
+				webview1.loadUrl("https://medizone.com.bd/");
+			}
+		});
+		
+		_drawer_keyword.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				i.setAction(Intent.ACTION_VIEW);
+				i.setData(Uri.parse("https://keywordtool.io"));
+				i.setPackage("com.android.chrome");
 				startActivity(i);
 			}
 		});
 		
-		_drawer_button3.setOnClickListener(new View.OnClickListener() {
+		_drawer_mzimage.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				i.setClass(getApplicationContext(), CustomEdittextActivity.class);
-				startActivity(i);
-			}
-		});
-		
-		_drawer_button4.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				i.setClass(getApplicationContext(), SocialErrorActivity.class);
+				i.setAction(Intent.ACTION_VIEW);
+				i.setData(Uri.parse("https://www.google.com/search?q=health&tbm=isch&hl=en&tbs=il:cl"));
+				i.setPackage("com.android.chrome");
 				startActivity(i);
 			}
 		});

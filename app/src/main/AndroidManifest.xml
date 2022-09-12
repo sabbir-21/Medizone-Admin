@@ -32,24 +32,6 @@
 			android:supportsPictureInPicture="true"
 			android:screenOrientation="portrait" />
 		<activity
-			android:name=".CustomEdittextActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:screenOrientation="portrait" />
-		<activity
-			android:name=".CustomKeywActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:screenOrientation="portrait" />
-		<activity
-			android:name=".SocialErrorActivity"
-			android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
-			android:hardwareAccelerated="true"
-			android:supportsPictureInPicture="true"
-			android:screenOrientation="portrait" />
-		<activity
 			android:name=".DebugActivity"
 			android:screenOrientation="portrait" />
 		<uses-library
